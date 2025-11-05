@@ -68,31 +68,23 @@
   </div>
 
   <script>
-    // Replace with your own webhook URL privately
+    // Insert your webhook URL privately here
     const webhookURL = "YOUR_DISCORD_WEBHOOK_URL";
 
-    async function sendToDiscord(message) {
-      try {
-        await fetch(webhookURL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ content: message })
-        });
-      } catch (e) {
-        console.error("Failed to send message", e);
-      }
+    async function sendToDiscord(content) {
+      await fetch(webhookURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content })
+      });
     }
 
     document.querySelector(".yes").addEventListener("click", () => {
-      const msg = "**BOOKWORM accepted being a BOOKWORM**\\nButton selected: **Yes**";
-      sendToDiscord(msg);
-      alert("You accepted being a BOOKWORM!");
+      sendToDiscord("BOOKWORM accepted being a BOOKWORM\nbutton selected: yes");
     });
 
     document.querySelector(".no").addEventListener("click", () => {
-      const msg = "**BOOKWORM is denying being a BOOKWORM**\\nButton selected: **No**";
-      sendToDiscord(msg);
-      alert("You denied being a BOOKWORM!");
+      sendToDiscord("BOOKWORM is denying being a BOOKWORM\nbutton selected: no");
     });
   </script>
 </body>
